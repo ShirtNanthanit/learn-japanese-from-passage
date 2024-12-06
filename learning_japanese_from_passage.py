@@ -71,34 +71,11 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown(
-    """
-<style>
-.css-nzvw1x {
-    background-color: #061E42 !important;
-    background-image: none !important;
-}
-.css-1aw8i8e {
-    background-image: none !important;
-    color: #FFFFFF !important
-}
-.css-ecnl2d {
-    background-color: #496C9F !important;
-    color: #496C9F !important
-}
-.css-15zws4i {
-    background-color: #496C9F !important;
-    color: #FFFFFF !important
-}
-</style>
-""",
-    unsafe_allow_html=True
-)
 
 
 
 user_api_key = st.sidebar.text_input("🔑 Enter your OpenAI API key", type="password")
-st.sidebar.markdown("💡 **Hint**: You can get your OpenAI API key from [OpenAI](https://openai.com).")
+st.sidebar.markdown("💡You can get your OpenAI API key from [OpenAI](https://openai.com).")
 
 
 st.markdown('<h1 class="main-title">Learn Japanese From Passage</h1>', unsafe_allow_html=True)
@@ -124,12 +101,12 @@ if st.button('Submit ✨'):
                     - "Furigana" - the furigana of that words
                     - "Part of Speech" - the part of speech of that words such as VT, VI, Noun, Adv, Adj
                     - "Meaning" - Meaning of that word in Thai
-                    - "Level" - Which JLPT level the word in from JLPT N5 to JLPT N1
                     - "Synonym" - A synonym of that word if it does not have put '-' instead
                     - "Antonym" - An antonym of that word, if it does not have put '-' instead
+                    - "Level" - Which JLPT level the word in from JLPT N5 to JLPT N1
 
-                    3. "Exams" - make a list of fill-in exams from words in passage. Each exam has only one sentence and not choice exam in this field, it contains 2 fields :
-                    - "Exam" - A fill-in exam sentence
+                    3. "Exams" - make a list of fill-in exams from intersting words in passage. Each exam has only one sentence and be not choice exam in this field, it contains 2 fields :
+                    - "Exam" - A fill-in exam sentence in Japanese
                     - "Key" - That answer of the exam
 
                     Don't say anything at first. Wait for the user to say something.
@@ -182,6 +159,11 @@ if st.button('Submit ✨'):
         
         st.markdown('</div>', unsafe_allow_html=True)
 
-
-
-        
+        # Download File
+        csv_content = suggestion_df.to_csv(index=False)
+        st.download_button(
+            label="ดาวน์โหลดไฟล์คำศัพท์",
+            data=csv_content,
+            file_name="data.csv",
+            mime="text/csv"
+        )
