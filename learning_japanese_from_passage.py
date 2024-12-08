@@ -117,7 +117,7 @@ if st.button('Submit ✨'):
             {'role': 'user', 'content': user_input},
         ]
         response = client.chat.completions.create(
-            model="gpt-4o",
+            model="gpt-4o-mini",
             messages=messages_so_far
         )
 
